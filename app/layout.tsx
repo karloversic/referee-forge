@@ -1,6 +1,7 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
-import { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from "next";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "RefereeForge",
@@ -17,10 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body>
+        <ClerkProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
